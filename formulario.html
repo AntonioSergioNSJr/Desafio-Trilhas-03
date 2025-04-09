@@ -16,37 +16,36 @@
             <h2 class="titulo-formulario">Formulário de Inscrição</h2>
             <p class="subtitulo-formulario">Preencha os dados abaixo para se inscrever no programa Trilhas no Maranhão.</p>
             <p class="subtitulo-formulario-texto">Informações do participante</p>
-            <form class="texto-formulario">
-                <label >Nome completo</label>
+            <form class="texto-formulario" id="formularioInscricao">
+                <label>Nome completo</label>
                 <input class="campo-texto" type="text" placeholder="Digite seu nome" required>
-
-                <label >Data de Nascimento</label>
+              
+                <label>Data de Nascimento</label>
                 <input class="campo-texto" type="date" required max="2025-03-19">
-
+              
                 <label>CPF</label>
-                <input class="campo-texto" type="text" placeholder="123.456.789-00" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
-
-                <label >Sexo</label>
+                <input class="campo-texto" type="text" placeholder="123.456.789-00" required>
+              
+                <label>Sexo</label>
                 <select class="seletor">
-                    <option>Feminino</option>
-                    <option>Masculino</option>
-                    <option>Outro</option>
+                  <option>Feminino</option>
+                  <option>Masculino</option>
+                  <option>Outro</option>
                 </select>
-
-                <label >E-mail</label>
+              
+                <label>E-mail</label>
                 <input class="campo-texto" type="email" placeholder="seuemail@email.com" required>
-
+              
                 <label>Telefone</label>
                 <input class="campo-texto" type="tel" placeholder="(99) 9 9999-9999" required>
-
+              
                 <label>Documento de Identidade</label>
                 <input class="campo-texto" type="file" required>
-
+              
                 <label>CEP</label>
-                <input class="campo-texto" type="text" placeholder="65XXX-XXX" required pattern="65\d{3}-\d{3}">
-
-                <label>Rua</label>
-                <input class="campo-texto" type="text" placeholder="Nome da Rua" required>
+                <input class="campo-texto" type="text" placeholder="65XXX-XXX" required>                                   
+                <label>Endereço</label>
+                <input class="campo-texto" type="text" placeholder="" required>
 
                 <label>Número</label>
                 <input class="campo-texto" type="number" required>
@@ -99,5 +98,6 @@
     <div class="botao-home-container">
         <button class="botao-home" onclick="window.location.href='index.html'">Voltar à página inicial</button>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
