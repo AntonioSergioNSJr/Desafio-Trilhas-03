@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <div class="conteiner-formulario">
+    <div class="secao-formulario-inscricao">
+      <h2 class="titulo-formulario">Login</h2>
+      <form class="texto-formulario">
+        <label>Email</label>
+        <input class="campo-texto" type="email" placeholder="seuemail@email.com" required>
+
+        <label>Senha</label>
+        <input class="campo-texto" type="password" placeholder="Digite sua senha" required>
+
+        <button type="submit" class="botao-inscricao">Entrar</button>
+      </form>
+
+      <!-- Botão para ir ao formulário de inscrição -->
+      <div class="botao-home-container">
+        <button class="botao-home" onclick="window.location.href='formulario.html'">
+          Fazer inscrição
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
