@@ -1,32 +1,46 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login e Criar Conta</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <div class="conteiner-formulario">
     <div class="secao-formulario-inscricao">
-      <h2 class="titulo-formulario">Login</h2>
-      <form class="texto-formulario">
+
+      <!-- Formulário de Login -->
+      <form id="form-login" class="texto-formulario" style="display: block;">
+        <h2 class="titulo-formulario">Login</h2>
+
         <label>Email</label>
-        <input class="campo-texto" type="email" placeholder="seuemail@email.com" required>
+        <input id="login-email" class="campo-texto" type="email" placeholder="seuemail@email.com" required>
 
         <label>Senha</label>
-        <input class="campo-texto" type="password" placeholder="Digite sua senha" required>
+        <input id="login-senha" class="campo-texto" type="password" placeholder="Digite sua senha" required>
 
         <button type="submit" class="botao-inscricao">Entrar</button>
+
+        <p class="subtitulo-formulario-texto">Ainda não tem uma conta? <a href="#" onclick="mostrarCriarConta()">Criar conta</a></p>
       </form>
 
-      <!-- Botão para ir ao formulário de inscrição -->
-      <div class="botao-home-container">
-        <button class="botao-home" onclick="window.location.href='formulario.html'">
-          Fazer inscrição
-        </button>
-      </div>
+      <!-- Formulário de Criar Conta -->
+      <form id="form-criar-conta" class="texto-formulario" style="display: none;">
+        <h2 class="titulo-formulario">Criar Conta</h2>
+
+        <label>Email</label>
+        <input id="criar-email" class="campo-texto" type="email" placeholder="seuemail@email.com" required>
+
+        <label>Senha</label>
+        <input id="criar-senha" class="campo-texto" type="password" placeholder="Crie uma senha" required>
+
+        <button type="submit" class="botao-inscricao">Cadastrar</button>
+
+        <p class="subtitulo-formulario-texto">Já tem uma conta? <a href="#" onclick="mostrarLogin()">Fazer login</a></p>
+      </form>
+
     </div>
   </div>
 

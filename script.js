@@ -1,99 +1,119 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const caminho = window.location.pathname;
+// Alternar entre formulários
+function mostrarCriarConta() {
+    document.getElementById('form-login').style.display = 'none';
+    document.getElementById('form-criar-conta').style.display = 'block';
+  }
   
-    aplicarMascaras();
+  function mostrarLogin() {
+    document.getElementById('form-criar-conta').style.display = 'none';
+    document.getElementById('form-login').style.display = 'block';
+  }
   
-    if (caminho.includes('login.html')) {
-      const loginForm = document.getElementById('loginForm');
+  // Criar Conta
+  document.getElementById('form-criar-conta')?.addEventListener('submit', function (e) {
+    e.preventDefault();
   
-      loginForm?.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const login = document.getElementById('login').value;
-        if (login) {
-          localStorage.setItem('loginUsuario', login);
-          window.location.href = 'formulario.html';
-        }
-      });
+    const email = document.getElementById('criar-email').value.trim();
+    const senha = document.getElementById('criar-senha').value;
+  
+    if (!email || !senha) {
+      alert('Preencha todos os campos para criar a conta.');
+      return;
     }
   
-    if (caminho.includes('formulario.html')) {
-      const formulario = document.querySelector('form');
+    const novoUsuario = { email, senha };
+    localStorage.setItem('usuarioCadastrado', JSON.stringify(novoUsuario));
   
-      formulario?.addEventListener('submit', (e) => {
-        e.preventDefault();
+    alert('Cadastro realizado com sucesso! Você pode fazer login agora.');
+    mostrarLogin();
+  });
   
-        const cpfInput = document.querySelector('input[placeholder="123.456.789-00"]');
-        const cpf = cpfInput.value;
+  // Login
+  document.getElementById('form-login')?.addEventListener('submit', function (e) {
+    e.preventDefault();
   
-        if (!validarCPF(cpf)) {
-          alert("CPF inválido. Verifique e tente novamente.");
-          cpfInput.focus();
-          return;
-        }
+    const email = document.getElementById('login-email').value.trim();
+    const senha = document.getElementById('login-senha').value;
   
-        alert("Inscrição realizada com sucesso!");
-        localStorage.removeItem('loginUsuario');
-        window.location.href = 'login.html';
-      });
+    const usuarioSalvo = JSON.parse(localStorage.getItem('usuarioCadastrado'));
+  
+    if (!usuarioSalvo) {
+      alert('Nenhum usuário cadastrado. Crie uma conta primeiro.');
+      mostrarCriarConta();
+      return;
+    }
+  
+    if (email === usuarioSalvo.email && senha === usuarioSalvo.senha) {
+      localStorage.setItem('usuarioLogado', JSON.stringify({ email }));
+      window.location.href = 'formulario.html';
+    } else {
+      alert('Email ou senha incorretos!');
     }
   });
   
-  // === MÁSCARAS ===
-  function aplicarMascaras() {
-    const cpfInput = document.querySelector('input[placeholder="123.456.789-00"]');
-    const telInput = document.querySelector('input[placeholder="(99) 9 9999-9999"]');
-    const cepInput = document.querySelector('input[placeholder^="65"]');
+  // Formulário de Inscrição
+  document.getElementById('formularioInscricao')?.addEventListener('submit', function (e) {
+    e.preventDefault();
   
-    if (cpfInput) {
-      cpfInput.addEventListener('input', () => {
-        cpfInput.value = cpfInput.value
-          .replace(/\D/g, '')
-          .replace(/(\d{3})(\d)/, '$1.$2')
-          .replace(/(\d{3})(\d)/, '$1.$2')
-          .replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-      });
-    }
+    const form = e.target;
+    const dados = {
+      nome: form[0].value,
+      nascimento: form[1].value,
+      cpf: form[2].value,
+      sexo: form[3].value,
+      email: form[4].value,
+      telefone: form[5].value,
+      cep: form[7].value,
+      endereco: form[8].value,
+      numero: form[9].value,
+      cidade: form[10].value,
+      estado: form[11].value,
+      trilha: document.querySelector('input[name="trilha"]:checked')?.parentNode.textContent.trim() || 'Não selecionado'
+    };
   
-    if (telInput) {
-      telInput.addEventListener('input', () => {
-        telInput.value = telInput.value
-          .replace(/\D/g, '')
-          .replace(/^(\d{2})(\d)/, '($1) $2')
-          .replace(/(\d{5})(\d)/, '$1-$2')
-          .slice(0, 15);
-      });
-    }
+    const comprovanteHTML = `
+      <div id="comprovante" style="padding: 20px; font-family: Arial;">
+        <h2>Inscrição realizada com sucesso!</h2>
+        <h3>Comprovante de Inscrição</h3>
+        <p><strong>Nome:</strong> ${dados.nome}</p>
+        <p><strong>Data de Nascimento:</strong> ${dados.nascimento}</p>
+        <p><strong>CPF:</strong> ${dados.cpf}</p>
+        <p><strong>Sexo:</strong> ${dados.sexo}</p>
+        <p><strong>Email:</strong> ${dados.email}</p>
+        <p><strong>Telefone:</strong> ${dados.telefone}</p>
+        <p><strong>CEP:</strong> ${dados.cep}</p>
+        <p><strong>Endereço:</strong> ${dados.endereco}, Nº ${dados.numero}, ${dados.cidade} - ${dados.estado}</p>
+        <p><strong>Trilha escolhida:</strong> ${dados.trilha}</p>
+      </div>
+    `;
   
-    if (cepInput) {
-      cepInput.addEventListener('input', () => {
-        cepInput.value = cepInput.value
-          .replace(/\D/g, '')
-          .replace(/(\d{5})(\d)/, '$1-$2')
-          .slice(0, 9);
-      });
-    }
-  }
+    document.body.innerHTML = comprovanteHTML;
   
-  // === VALIDAÇÃO DE CPF ===
-  function validarCPF(cpf) {
-    cpf = cpf.replace(/\D/g, '');
+    const element = document.getElementById('comprovante');
   
-    if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-  
-    let soma = 0;
-    for (let i = 0; i < 9; i++) {
-      soma += parseInt(cpf.charAt(i)) * (10 - i);
-    }
-    let resto = 11 - (soma % 11);
-    let digito1 = resto >= 10 ? 0 : resto;
-  
-    soma = 0;
-    for (let i = 0; i < 10; i++) {
-      soma += parseInt(cpf.charAt(i)) * (11 - i);
-    }
-    resto = 11 - (soma % 11);
-    let digito2 = resto >= 10 ? 0 : resto;
-  
-    return digito1 === parseInt(cpf.charAt(9)) && digito2 === parseInt(cpf.charAt(10));
-  }
+    html2pdf().set({
+      margin: 10,
+      filename: 'comprovante_inscricao.pdf',
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    }).from(element).save().then(() => {
+      const voltarBtn = document.createElement('button');
+      voltarBtn.textContent = 'Voltar à Página Inicial';
+      voltarBtn.style.cssText = `
+        margin-top: 30px;
+        padding: 12px 24px;
+        font-size: 16px;
+        border: none;
+        border-radius: 8px;
+        background-color: #007bff;
+        color: white;
+        cursor: pointer;
+        display: block;
+      `;
+      voltarBtn.onclick = () => {
+        window.location.href = 'index.html';
+      };
+      document.body.appendChild(voltarBtn);
+    });
+  });
   
