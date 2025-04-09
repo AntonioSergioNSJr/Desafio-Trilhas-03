@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Inscrição</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="conteiner-formulario">
+        <div class="imagem-estudo"> 
+            <img src="/Assets/Ilustration.png" alt="Imagem pessoa estudando">
+            <img src="/Assets/Group 2.png" alt="Logo Trilhas Inova" class="segunda-imagem">
+        </div>
+        <div class="secao-formulario-inscricao">           
+            <h2 class="titulo-formulario">Formulário de Inscrição</h2>
+            <p class="subtitulo-formulario">Preencha os dados abaixo para se inscrever no programa Trilhas no Maranhão.</p>
+            <p class="subtitulo-formulario-texto">Informações do participante</p>
+            <form class="texto-formulario">
+                <label >Nome completo</label>
+                <input class="campo-texto" type="text" placeholder="Digite seu nome" required>
+
+                <label >Data de Nascimento</label>
+                <input class="campo-texto" type="date" required max="2025-03-19">
+
+                <label>CPF</label>
+                <input class="campo-texto" type="text" placeholder="123.456.789-00" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}">
+
+                <label >Sexo</label>
+                <select class="seletor">
+                    <option>Feminino</option>
+                    <option>Masculino</option>
+                    <option>Outro</option>
+                </select>
+
+                <label >E-mail</label>
+                <input class="campo-texto" type="email" placeholder="seuemail@email.com" required>
+
+                <label>Telefone</label>
+                <input class="campo-texto" type="tel" placeholder="(99) 9 9999-9999" required>
+
+                <label>Documento de Identidade</label>
+                <input class="campo-texto" type="file" required>
+
+                <label>CEP</label>
+                <input class="campo-texto" type="text" placeholder="65XXX-XXX" required pattern="65\d{3}-\d{3}">
+
+                <label>Rua</label>
+                <input class="campo-texto" type="text" placeholder="Nome da Rua" required>
+
+                <label>Número</label>
+                <input class="campo-texto" type="number" required>
+
+                <label>Cidade</label>
+                <input class="campo-texto" type="text" placeholder="Cidade" required>
+
+                <label>Estado</label>
+                <input class="campo-texto" type="text" value="MA" readonly>
+
+                <label>Trilhas de Aprendizagem</label>
+                <div class="trilhas">
+                    <label class="opcao-trilha">
+                        <input type="radio" name="trilha" id="front-end" hidden>
+                        <img src="/Assets/front-end.png" alt="Front-End" class="icon">
+                        Front-End
+                    </label>
+                    <label class="opcao-trilha">
+                        <input type="radio" name="trilha" id="back-end" hidden>
+                        <img src="/Assets/back-end.png" alt="Back-End" class="icon">
+                        Back-End
+                    </label>
+                    <label class="opcao-trilha">
+                        <input type="radio" name="trilha" id="jogos" hidden>
+                        <img src="/Assets/jogos.png" alt="Jogos" class="icon">
+                        Jogos
+                    </label>
+                    <label class="opcao-trilha">
+                        <input type="radio" name="trilha" id="design" hidden>
+                        <img src="/Assets/ux.png" alt="Design" class="icon">
+                        Design
+                    </label>
+                    <label class="opcao-trilha">
+                        <input type="radio" name="trilha" id="ciencia-dados" hidden>
+                        <img src="/Assets/Frame 48095973.png" alt="Ciência de Dados" class="icon">
+                        Ciência de Dados
+                    </label>
+                </div>
+
+                <label class="termos-privacidade">
+                    <input type="checkbox" required>
+                    Declaro que li e concordo com os <a href="#">Termos e Condições</a> e a <a href="#">Política de Privacidade</a>.
+                </label>
+                
+                <button type="submit" class="botao-inscricao">Fazer Inscrição</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="botao-home-container">
+        <button class="botao-home" onclick="window.location.href='index.html'">Voltar à página inicial</button>
+    </div>
+</body>
+</html>
