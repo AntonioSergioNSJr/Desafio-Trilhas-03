@@ -55,5 +55,5 @@ Este projeto é um sistema de inscrição com autenticação simples, que permit
 
 ## Autores
 Antônio Sergio Nogueira de Sousa Junior
- git hub :https://github.com/AntonioSergioNSJr
 Sarah Cristinny Castro Monteiro
+
